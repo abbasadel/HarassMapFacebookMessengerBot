@@ -84,20 +84,21 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('تم استلام البلاغ.');
+        $message = new Message('lang.report.confirm1');
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
 
-        $message = new Message('نشكركم على التصرف بشكل إيجابي وعلى قيامكم بالإبلاغ عن التحرش الجنسي. تساعدنا بلاغاتكم على الحصول على أدلة بالغة الأهمية نستخدمها لإنشاء حملات توعية، وإجراء أبحاث جديدة، وتفعيل برنامجنا "مدارس وجامعات آمنة"، بالإضافة إلى تخطيط وتنفيذ أعمال مجتمعية عديدة في جميع أنحاء مصر من أجل القضاء على التقبل المجتمعي للتحرش والاعتداء الجنسي.');
+        $message = new Message('lang.report.confirm2');
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
 
-        $message = new Message('للحصول على معلومات عن خدمات قانونية ونفسية مجانية تقدري تتصلي على نظرة للدراسات النسوية على تليفون 0227946992');
+        $message = new Message('lang.report.confirm3');
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
 
         $elements = [
-            new WebUrl('نظرة للدراسات النسوية', 'http://nazra.org/%D8%A7%D8%AA%D8%B5%D9%84-%D8%A8%D9%86%D8%A7'),
-            new WebUrl('خريطة التحرش', 'http://harassmap.org/ar/contact-us/'),
+            new WebUrl('lang.links.nazra.title', 'lang.links.nazra.url'),
+            new WebUrl('lang.links.hm.title', 'lang.links.hm.url'),
         ];
-        $message = new Button('تواصل معنا للمساعدة:', $elements);
+
+        $message = new Button('lang.report.contact_us', $elements);
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
 
         $this->advanceReportStep($report);
@@ -119,7 +120,7 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('ممكن تبعتي مكان الحادثة باستخدام خاصية مشاركة المكان؟');
+        $message = new Message('lang.report.share_location');
         $message->setQuickReplies([
             new Location(),
         ]);
@@ -145,7 +146,7 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('هل قام المارة بالتدخل للمساعدة؟');
+        $message = new Message('lang.report.assistance');
         $message->setQuickReplies([
             new Text('نعم', 'REPORT_INCIDENT_ASSISTANCE_OFFERED_YES'),
             new Text('لا', 'REPORT_INCIDENT_ASSISTANCE_OFFERED_NO'),
@@ -172,27 +173,27 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('برجاء الاختيار:');
+        $message = new Message('lang.report.type');
         switch ($harassmentType) {
             case 'VERBAL':
                 $harassmentTypeDetails = [
-                    new Text('النظر المتفحّص', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL1'),
-                    new Text('التلميحات بالوجه', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL2'),
-                    new Text('الندءات (البسبسة)', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL3'),
-                    new Text('التعليقات', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL4'),
-                    new Text('الملاحقة أو التتبع', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL5'),
-                    new Text('الدعوة الجنسة', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL6'),
+                    new Text('lang.incident.types.VERBAL1', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL1'),
+                    new Text('lang.incident.types.VERBAL2', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL2'),
+                    new Text('lang.incident.types.VERBAL3', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL3'),
+                    new Text('lang.incident.types.VERBAL4', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL4'),
+                    new Text('lang.incident.types.VERBAL5', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL5'),
+                    new Text('lang.incident.types.VERBAL6', 'REPORT_INCIDENT_HARASSMENT_DETAILS_VERBAL6'),
                 ];
                 break;
 
             case 'PHYSICAL':
                 $harassmentTypeDetails = [
-                    new Text('اللمس', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL1'),
-                    new Text('التعري', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL2'),
-                    new Text('التهديد والترهيب', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL3'),
-                    new Text('الاعتداء الجنسي', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL4'),
-                    new Text('الاغتصاب', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL5'),
-                    new Text('التحرش الجماعي', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL6'),
+                    new Text('lang.incident.types.PHYSICAL1', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL1'),
+                    new Text('lang.incident.types.PHYSICAL2', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL2'),
+                    new Text('lang.incident.types.PHYSICAL3', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL3'),
+                    new Text('lang.incident.types.PHYSICAL4', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL4'),
+                    new Text('lang.incident.types.PHYSICAL5', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL5'),
+                    new Text('lang.incident.types.PHYSICAL6', 'REPORT_INCIDENT_HARASSMENT_DETAILS_PHYSICAL6'),
                 ];
                 break;
         }
@@ -217,10 +218,10 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('نوع التحرش؟');
+        $message = new Message('lang.incident.type');
         $message->setQuickReplies([
-            new Text('لفظى', 'REPORT_INCIDENT_HARASSMENT_TYPE_VERBAL'),
-            new Text('جسدى', 'REPORT_INCIDENT_HARASSMENT_TYPE_PHYSICAL'),
+            new Text('lang.incident.types.verbal', 'REPORT_INCIDENT_HARASSMENT_TYPE_VERBAL'),
+            new Text('lang.incident.types.physical', 'REPORT_INCIDENT_HARASSMENT_TYPE_PHYSICAL'),
         ]);
 
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
@@ -266,13 +267,13 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('الساعة كام نقريبا؟');
+        $message = new Message('lang.report.time');
         $message->setQuickReplies([
-            new Text('12 الظهر', 'REPORT_INCIDENT_TIME_12'),
-            new Text('3 العصر', 'REPORT_INCIDENT_TIME_15'),
-            new Text('6 مساء', 'REPORT_INCIDENT_TIME_18'),
-            new Text('12 نصف الليل', 'REPORT_INCIDENT_TIME_00'),
-            new Text('6 الفجر', 'REPORT_INCIDENT_TIME_6'),
+            new Text('lang.report.times.TIME_12', 'REPORT_INCIDENT_TIME_12'),
+            new Text('lang.report.times.TIME_15', 'REPORT_INCIDENT_TIME_15'),
+            new Text('lang.report.times.TIME_18', 'REPORT_INCIDENT_TIME_18'),
+            new Text('lang.report.times.TIME_00', 'REPORT_INCIDENT_TIME_00'),
+            new Text('lang.report.times.TIME_6', 'REPORT_INCIDENT_TIME_6'),
         ]);
 
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
@@ -293,10 +294,10 @@ class ReportIncidentHandler implements Handler
 
         $message = new Message('امتى حصل التحرش؟');
         $message->setQuickReplies([
-            new Text('النهارده', 'REPORT_INCIDENT_DATE_TODAY'),
-            new Text('امبارح', 'REPORT_INCIDENT_DATE_YESTERDAY'),
-            new Text('اول امبارح', 'REPORT_INCIDENT_DATE_DAY_BEFORE_YESTERDAY'),
-            new Text('قبل كده', 'REPORT_INCIDENT_DATE_EARLIER'),
+            new Text('lang.report.dates.TODAY', 'REPORT_INCIDENT_DATE_TODAY'),
+            new Text('lang.report.dates.YESTERDAY', 'REPORT_INCIDENT_DATE_YESTERDAY'),
+            new Text('lang.report.dates.DAY_BEFORE_YESTERDAY', 'REPORT_INCIDENT_DATE_DAY_BEFORE_YESTERDAY'),
+            new Text('lang.report.dates.EARLIER', 'REPORT_INCIDENT_DATE_EARLIER'),
         ]);
 
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
@@ -315,7 +316,7 @@ class ReportIncidentHandler implements Handler
             $report
         );
 
-        $message = new Message('من فضلك، أبلغنا عن الواقعة بأكثر قدر ممكن من التفاصيل فى رسالة واحدة.');
+        $message = new Message('lang.report.detail');
 
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);
 
@@ -331,12 +332,12 @@ class ReportIncidentHandler implements Handler
             'step' => reset($this->steps),
         ]);
 
-        $response = $this->messenger->sendMessage($this->event->getSenderId(), 'تقدري تبلغي عن حادثة التحرش هنا بسرية تامه.  مش هنحتفظ باي بيانات او معلومات شخصية ليكي.');
+        $response = $this->messenger->sendMessage($this->event->getSenderId(), 'lang.report.privacy');
 
-        $message = new Message('علاقتك بالبلاغ؟');
+        $message = new Message('lang.report.relation');
         $message->setQuickReplies([
-            new Text('حصلي شخصيا', 'REPORT_INCIDENT_RELATIONSHIP_PERSONAL'),
-            new Text('شاهد عليه', 'REPORT_INCIDENT_RELATIONSHIP_WITNESS')
+            new Text('lang.report.self', 'REPORT_INCIDENT_RELATIONSHIP_PERSONAL'),
+            new Text('lang.report.witness', 'REPORT_INCIDENT_RELATIONSHIP_WITNESS')
         ]);
 
         $response = $this->messenger->sendMessage($this->event->getSenderId(), $message);

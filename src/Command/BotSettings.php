@@ -5,15 +5,15 @@ use Tgallice\FBMessenger\Model\Button\Postback;
 return [
     'get_started' => 'GET_STARTED',
     'greeting_text' => [
-        'default' => 'لاهل بك {{user_first_name}} فى خارطة التحرش!',
+        'default' => '',
         'localized' => [
             [
                 'locale' => 'en_US',
-                'text' => 'Welcome {{user_first_name}} to HarassMap!'
+                'text' => 'en.lang.settings.greeting'
             ],
             [
                 'locale' => 'ar_AR',
-                'text' => 'لاهل بك {{user_first_name}} فى خارطة التحرش!'
+                'text' => 'ar.lang.settings.greeting'
             ],
         ]
     ],
@@ -23,7 +23,7 @@ return [
             'composer_input_disabled' => false,
             'call_to_actions' => [
                 // new Postback('تغيير اللغة إلى English', 'CHANGE_LANGUAGE'),
-                new Postback('المساعدة', 'GET_STARTED'),
+                new Postback('ar.lang.settings.get_started', 'GET_STARTED'),
             ]
         ],
         [
@@ -31,7 +31,7 @@ return [
             'composer_input_disabled' => false,
             'call_to_actions' => [
                 // new Postback('Change language to العربية', 'CHANGE_LANGUAGE'),
-                new Postback('Help', 'GET_STARTED'),
+                new Postback('en.lang.settings.get_started', 'GET_STARTED'),
             ]
         ],
         [
@@ -39,7 +39,7 @@ return [
             'composer_input_disabled' => false,
             'call_to_actions' => [
                 // new Postback('تغيير اللغة إلى English', 'CHANGE_LANGUAGE'),
-                new Postback('المساعدة', 'GET_STARTED'),
+                new Postback('ar.settings.get_started', 'GET_STARTED'),
             ]
         ],
     ]
